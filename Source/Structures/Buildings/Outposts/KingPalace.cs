@@ -1,4 +1,4 @@
-namespace rts.building.supreme {
+namespace rts.building {
 
     /// <summary>
     /// All money is held here.

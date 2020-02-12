@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using rts.army;
 
-namespace rts.building.supreme {
+namespace rts.building {
     /// <summary>
     /// An outpost controls an area related to a Player. Each outpost must exist first 
     /// in order for a school to form in its territory.

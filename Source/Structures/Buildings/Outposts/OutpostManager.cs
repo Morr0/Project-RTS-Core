@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace rts.building.supreme {
     public class OutpostManager {
         internal Player player;

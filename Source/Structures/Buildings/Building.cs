@@ -18,9 +18,6 @@ namespace rts.building {
         // PROTECTED MEMBERS
         protected StructureSize size;
 
-        // PUBLIC MEMBERS
-        public int Durability {get; protected set;}
-
         public StructureSize GetSize() => size;
 
     }
