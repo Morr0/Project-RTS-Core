@@ -27,7 +27,7 @@ namespace rts.building {
             armyInside = new ArmyPack(this);
         }
 
-        public int MaxSoldiers(ref SoldierType type) => ArmyPack.ARMY_PACK_UNLIMATED;
+        public int MaxSoldiers(ref UnitType type) => ArmyPack.ARMY_PACK_UNLIMATED;
 
         // Progression
         public override int Setup(){

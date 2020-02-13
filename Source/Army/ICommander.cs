@@ -1,8 +1,8 @@
 namespace rts.army {
     /// <summary>
-    /// Represents a commander that can control an army pack. An outpost is a commander.
+    /// Represents a commander that can control a army. An outpost is a commander. e.g. a looter, high level soldier
     /// </summary>
     public interface ICommander {
-        int MaxSoldiers(ref SoldierType type);
+        int MaxSoldiers(ref UnitType type);
     }
 }

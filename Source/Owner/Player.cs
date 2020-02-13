@@ -7,6 +7,8 @@ namespace rts {
         public Player(bool ai){
             this.AIControllable = ai;
         }
+
+        public Clan clan {get; set;}
         
     }
 }

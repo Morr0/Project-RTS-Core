@@ -8,7 +8,7 @@ namespace rts.building {
         private TrainingPack trainingArmyPack;
 
         // Training priority
-        public SoldierType CurrentTrainingPriority {get; set;} = SoldierType.LIGHT_INFANTRY;
+        public UnitType CurrentTrainingPriority {get; set;} = UnitType.LIGHT_INFANTRY;
 
         public SchoolBuilding(ref ArmyPack outpostArmyPack) : base(StructureSize.BIG) {
             this.outpostArmyPack = outpostArmyPack;
@@ -16,7 +16,7 @@ namespace rts.building {
         }
 
         // ICommander
-        public int MaxSoldiers(ref SoldierType type){
+        public int MaxSoldiers(ref UnitType type){
             return ArmyPack.ARMY_PACK_UNLIMATED;
         }
 
@@ -26,7 +26,7 @@ namespace rts.building {
         }
 
         public override void Progress(){
-            SoldierType type = SoldierType.LIGHT_INFANTRY;
+            UnitType type = UnitType.LIGHT_INFANTRY;
             if (trainingArmyPack.CanGet(ref type)){
                 trainingArmyPack.Get(ref type);
                 // Will ignore the CanAdd() because to get here the CanAdd() 
@@ -35,11 +35,11 @@ namespace rts.building {
             }
         }
 
-        public bool CanTrainSoldier(ref SoldierType type, int amount = 1){
+        public bool CanTrainSoldier(ref UnitType type, int amount = 1){
             return outpostArmyPack.CanAdd(ref type, amount);
         }
 
-        public void TrainNewSoldier(ref SoldierType type, int amount){
+        public void TrainNewSoldier(ref UnitType type, int amount){
             // Will ignore checking for CanAdd(); since the training pack is unlimated
             // in capacity
             trainingArmyPack.Add(ref type, amount);
