@@ -1,16 +1,16 @@
 namespace rts.army {
-    public class ArmyMarch : March {
-        private ArmyPack pack;
 
+    public class ArmyMarch : March {
         public ArmyMarch(ref Player player, ref Spot origin, ref Spot destination, ref ArmyPack pack) 
         : base(ref player, ref origin, ref destination){
             this.pack = pack;
+
         }
 
         public override bool CanProgress(){
             // Leave it here as well
             if (pack.Total <= 0){
-                IsDone = true;
+                IsDead = true;
                 return false;
             }
                 
@@ -18,21 +18,13 @@ namespace rts.army {
             return true;
         }
 
-        public override void Progress(){
+        protected override void HandledProgress(){
             
         }
 
         // Engagement stuff
         public override bool CanEngageWith(March anotherMarch){
             return true;
-        }
-
-        public override void Engage(March anotherMarch){
-
-        }
-
-        public override void Disengage(){
-
         }
 
         public override bool CanMarchOn(Spot spot){

@@ -7,14 +7,21 @@ namespace rts.army {
     public class ArmyPack : Pack {
         protected Dictionary<UnitType, int> soldierBank;
 
+        protected Dictionary<UnitType, int> woundedSoldierBank;
+
         public ArmyPack(ICommander commander) : base(ref commander){
             // The best possible approach i can think of
-            soldierBank = new Dictionary<UnitType, int>();
-            soldierBank.Add(UnitType.LIGHT_INFANTRY, 0);
-            soldierBank.Add(UnitType.HEAVY_INFANTRY, 0);
-            soldierBank.Add(UnitType.CAVALRY, 0);
-            soldierBank.Add(UnitType.ARCHER, 0);
-            soldierBank.Add(UnitType.ARCHER_CAVALRY, 0);
+            PopulateDictionary(ref soldierBank);
+            PopulateDictionary(ref woundedSoldierBank);
+        }
+
+        private void PopulateDictionary(ref Dictionary<UnitType, int> dictionary){
+            dictionary = new Dictionary<UnitType, int>();
+            dictionary.Add(UnitType.LIGHT_INFANTRY, 0);
+            dictionary.Add(UnitType.HEAVY_INFANTRY, 0);
+            dictionary.Add(UnitType.CAVALRY, 0);
+            dictionary.Add(UnitType.ARCHER, 0);
+            dictionary.Add(UnitType.ARCHER_CAVALRY, 0);
         }
 
         public bool CanAdd(ref UnitType type, int amount){
@@ -34,6 +41,7 @@ namespace rts.army {
         public void Add(ref UnitType type, int amount){
             soldierBank[type] = soldierBank[type] + amount;
             Total += amount;
+            TotalHP = Total * 4;
         }
 
         public bool CanGet(ref UnitType type, int amount = 1) {
@@ -47,6 +55,11 @@ namespace rts.army {
         public void Get(ref UnitType type, int amount = 1){
             soldierBank[type] = soldierBank[type] - amount;
             Total -= amount;
+            TotalHP = Total * 4;
+        }
+
+        public override void Hit(DamageInfo damage){
+            
         }
 
     }

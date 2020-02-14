@@ -1,6 +1,8 @@
 namespace rts.army {
+    using System.Collections.Generic;
+
     /// <summary>
-    /// A march is a moving army, individual or ship. This base class does not handle the units inside, it is left to the childs.
+    /// A march is a moving army, individual or ship. 
     /// </summary>
     public abstract class March
     {
@@ -18,12 +20,18 @@ namespace rts.army {
         /// To be used when this march is 'dead' so that the march manager can delete this march safely.
         /// </summary>
         /// <value></value>
-        public bool IsDone {get; protected set;}
+        public bool IsDead {get; protected set;}
+
+        internal Pack pack;
+
+        protected List<Engagement> engagements;
 
         public March(ref Player player, ref Spot origin, ref Spot destination){
             Player = player;
             Origin = origin;
             Destination = destination;
+
+            engagements = new List<Engagement>();
         }
 
         /// <summary>
@@ -32,10 +40,18 @@ namespace rts.army {
         /// <returns></returns>
         public abstract bool CanProgress();
 
+        public void Progress(){
+            foreach (Engagement engagement in engagements){
+                engagement.Action();
+            }
+
+            HandledProgress();
+        }
+
         /// <summary>
         /// Must be proceeded by CanProgress();.Progress toward the destination if is not null. Also handles engagement with other marches.
         /// </summary>
-        public abstract void Progress();
+        protected abstract void HandledProgress();
 
         // The engagement system is where two marches or more or one spot with a march want to interact. The interaction
         // might be a battle, trade or something else.
@@ -50,11 +66,22 @@ namespace rts.army {
         /// To be called once so the Progress() does the rest.
         /// </summary>
         /// <param name="anotherMarch"></param>
-        public abstract void Engage(March anotherMarch);
+        public Engagement Engage(March guestMarch){
+            Engagement engagement = null;
+
+            if (guestMarch is ArmyMarch){
+                engagement = new BattleEngagement(pack as ArmyPack, guestMarch.pack as ArmyPack);
+            }
+
+            engagements.Add(engagement);
+            return engagement;
+        }
         /// <summary>
         /// To be called once so the Progress() does the rest.
         /// </summary>
-        public abstract void Disengage();
+        public void Disengage(Engagement engagement){
+            engagements.Remove(engagement);
+        }
 
         /// <summary>
         /// This is useful for pathfinding.
