@@ -14,8 +14,7 @@ namespace rts.army {
             Commander = commander;
         }
 
-        public abstract void Hit(DamageInfo damage);
+        public abstract void Hit(ref int damage);
 
-        
     }
 }

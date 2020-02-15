@@ -26,7 +26,7 @@ namespace rts.building {
             usableItems = new List<ItemType>();
 
             if (craft == CraftType.CARPENTERY){
-                usableItems.Add(ItemType.WOOD);
+                usableItems.Add(ItemType.WOOD_PINE);
             }
         }
 

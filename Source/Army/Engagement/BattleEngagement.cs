@@ -7,6 +7,8 @@ namespace rts.army {
         // For the turn based nature. True if it is the host's turn now.
         private bool hostTurn;
 
+        private int damage = 0;
+
         public BattleEngagement(ArmyPack hostPack, ArmyPack guestPack){
             this.hostPack = hostPack;
             this.guestPack = guestPack;
@@ -15,9 +17,11 @@ namespace rts.army {
 
         public override void Action(){
             if (hostTurn){
-                hostPack.Hit(new DamageInfo());
+                damage = (100 * guestPack.Total) / (3);
+                hostPack.Hit(ref damage);
             } else {
-                guestPack.Hit(new DamageInfo());
+                damage = (100 * hostPack.Total) / (3);
+                guestPack.Hit(ref damage);
             }
 
             hostTurn = !hostTurn;

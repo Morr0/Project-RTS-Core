@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+using System;
 
 namespace rts.army {
     /// <summary>
     /// Represents an army that contains various types of soldiers
     /// </summary>
     public class ArmyPack : Pack {
+        public const int HP_CONSTANT = 4;
+
         protected Dictionary<UnitType, int> soldierBank;
 
         protected Dictionary<UnitType, int> woundedSoldierBank;
@@ -41,7 +44,7 @@ namespace rts.army {
         public void Add(ref UnitType type, int amount){
             soldierBank[type] = soldierBank[type] + amount;
             Total += amount;
-            TotalHP = Total * 4;
+            TotalHP = Total * HP_CONSTANT;
         }
 
         public bool CanGet(ref UnitType type, int amount = 1) {
@@ -55,11 +58,13 @@ namespace rts.army {
         public void Get(ref UnitType type, int amount = 1){
             soldierBank[type] = soldierBank[type] - amount;
             Total -= amount;
-            TotalHP = Total * 4;
+            TotalHP = Total * HP_CONSTANT;
         }
 
-        public override void Hit(DamageInfo damage){
-            
+        public override void Hit(ref int damage){
+            TotalHP -= damage;
+            Total = TotalHP / HP_CONSTANT;
+
         }
 
     }
