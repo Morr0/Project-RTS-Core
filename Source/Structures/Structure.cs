@@ -4,8 +4,14 @@ namespace rts {
         // PUBLIC MEMBERS
         public int Durability {get; protected set;}
 
-        public Structure(){
+        // PROTECTED MEMBERS
+        protected StructureSize size;
+
+        public Structure(ref StructureSize size){
+            this.size = size;
         }
+
+        public StructureSize GetSize() => size;
     }
 
     public enum StructureSize : byte {

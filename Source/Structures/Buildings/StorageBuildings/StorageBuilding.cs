@@ -1,15 +1,15 @@
 using rts.item;
 
 namespace rts.building {
+    /// <summary>
+    /// A general storage building. Can hold any items including water.
+    /// </summary>
     public class StorageBuilding : Building {
+        /// <summary>
+        /// for liquids, it is in terms of L 
+        /// for solids, it is in terms of pieces
+        /// </summary>
         public static int MINIMUM_CAPACITY = 2000;
-
-        public sealed override int Setup(){
-            return Building.IProgressable_NO_PROGRESS;
-        }
-
-        // Progressing is irrelevant to a storage container
-        public sealed override void Progress(){}
 
         // Properties
         public ItemType currentItem {get; private set;} = ItemType.NONE;

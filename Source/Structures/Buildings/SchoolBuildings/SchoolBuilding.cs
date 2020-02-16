@@ -1,7 +1,7 @@
 using rts.army;
 
 namespace rts.building {
-    public class SchoolBuilding : Building, ICommander {
+    public class SchoolBuilding : TickProgressableBuilding, ICommander {
         // A reference to the army pack in the outpost this school belongs to
         private ArmyPack outpostArmyPack;
         // An internal army pack for training soldiers

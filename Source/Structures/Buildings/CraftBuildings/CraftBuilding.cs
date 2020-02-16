@@ -3,7 +3,7 @@ using rts.item;
 
 namespace rts.building {
 
-    public class CraftBuilding : Building {
+    public class CraftBuilding : TickProgressableBuilding {
         public CraftType Craft {get; private set;}
 
         private List<ItemType> usableItems;

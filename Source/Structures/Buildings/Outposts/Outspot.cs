@@ -29,14 +29,6 @@ namespace rts.building {
 
         public int MaxSoldiers(ref UnitType type) => ArmyPack.ARMY_PACK_UNLIMATED;
 
-        // Progression
-        public override int Setup(){
-            return Building.IProgressable_NO_PROGRESS;
-        }
-
-        public override void Progress(){
-        }
-
         public bool CanAddToTerritory(ref Structure structure){
             return true;
         }

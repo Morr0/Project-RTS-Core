@@ -1,24 +1,7 @@
 namespace rts.building {
-    public abstract class Building : Structure, IProgressable {
-        // PUBLIC CONSTANTS
-        /// <summary>
-        /// WHERE a Building does not need to be updated regularly
-        /// </summary>
-        public static int IProgressable_NO_PROGRESS = -1;
-
-        // IProgressable
-        public abstract int Setup();
-        public abstract void Progress();
-
+    public abstract class Building : Structure {
         // CONSTRUCTION
-        public Building(StructureSize size){
-            this.size = size;
+        public Building(StructureSize size) : base(ref size){
         }
-
-        // PROTECTED MEMBERS
-        protected StructureSize size;
-
-        public StructureSize GetSize() => size;
-
     }
 }

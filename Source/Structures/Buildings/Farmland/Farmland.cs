@@ -1,6 +1,6 @@
 namespace rts.building.farm {
     using rts.item;
-    public class Farmland : Building {
+    public class Farmland : TickProgressableBuilding {
 
         public int TicksToNextHarvest {get; private set;}
         public int TotalTicksToHarvest {get; private set;}

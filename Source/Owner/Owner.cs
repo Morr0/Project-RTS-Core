@@ -12,8 +12,11 @@ namespace rts {
         /// <value></value>
         public bool IsClan {get; protected set;} = false;
 
-        // To be initialised by 
-        protected Array outposts;
+        internal List<Spot> occupiedSpots;
+
+        public Owner(){
+            occupiedSpots = new List<Spot>();
+        }
 
     }
 }
